@@ -1,53 +1,55 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import loginImg from "../assets/login.jpg"; 
+// import portfolioimg from "../assets/portfolio.jpg";
 
 const projects = [
+  // {
+  //   title: "AI-Powered Dashboard",
+  //   description: "Real-time analytics platform with machine learning insights and predictive modeling.",
+  //   tech: ["React", "TypeScript", "Python", "TensorFlow"],
+  //   image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+  //   github: "https://github.com",
+  //   demo: "https://demo.com",
+  // },
+  // {
+  //   title: "3D Product Configurator",
+  //   description: "Interactive 3D product visualization with real-time customization and AR preview.",
+  //   tech: ["Three.js", "React", "WebGL", "Blender"],
+  //   image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
+  //   github: "https://github.com",
+  //   demo: "https://demo.com",
+  // },
+  // {
+  //   title: "Portfolio Website",
+  //   description: "Decentralized NFT marketplace with smart contracts and Web3 integration.",
+  //   tech: ["Solidity", "Ethers.js", "Next.js", "IPFS"],
+  //   image: "./src/assetsportfolio .png",
+  //   github: "https://github.com",
+  //   demo: "https://demo.com",
+  // },
+  // {
+  //   title: "Real-Time Collaboration Tool",
+  //   description: "Multi-user collaborative workspace with WebRTC and operational transformation.",
+  //   tech: ["WebRTC", "Socket.io", "Node.js", "MongoDB"],
+  //   image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
+  //   github: "https://github.com",
+  //   demo: "https://demo.com",
+  // },
+  // {
+  //   title: "AR Gaming Experience",
+  //   description: "Augmented reality mobile game with geolocation and multiplayer features.",
+  //   tech: ["Unity", "ARKit", "C#", "Firebase"],
+  //   image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&q=80",
+  //   github: "https://github.com",
+  //   demo: "https://demo.com",
+  // },
   {
-    title: "AI-Powered Dashboard",
-    description: "Real-time analytics platform with machine learning insights and predictive modeling.",
-    tech: ["React", "TypeScript", "Python", "TensorFlow"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-  },
-  {
-    title: "3D Product Configurator",
-    description: "Interactive 3D product visualization with real-time customization and AR preview.",
-    tech: ["Three.js", "React", "WebGL", "Blender"],
-    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-  },
-  {
-    title: "Blockchain Marketplace",
-    description: "Decentralized NFT marketplace with smart contracts and Web3 integration.",
-    tech: ["Solidity", "Ethers.js", "Next.js", "IPFS"],
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-  },
-  {
-    title: "Real-Time Collaboration Tool",
-    description: "Multi-user collaborative workspace with WebRTC and operational transformation.",
-    tech: ["WebRTC", "Socket.io", "Node.js", "MongoDB"],
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-  },
-  {
-    title: "AR Gaming Experience",
-    description: "Augmented reality mobile game with geolocation and multiplayer features.",
-    tech: ["Unity", "ARKit", "C#", "Firebase"],
-    image: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=800&q=80",
-    github: "https://github.com",
-    demo: "https://demo.com",
-  },
-  {
-    title: "AI Content Generator",
+    title: "Login page",
     description: "Generative AI platform for creating marketing content with natural language processing.",
     tech: ["GPT-4", "Python", "FastAPI", "PostgreSQL"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    image:"./src/assets/login.jpg",
     github: "https://github.com",
     demo: "https://demo.com",
   },

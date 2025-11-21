@@ -6,6 +6,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Facebook, Linkedin, Github, Instagram } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { useState } from "react";
+
+
+
 
 interface ContactForm {
   name: string;
@@ -16,18 +22,43 @@ interface ContactForm {
 
 const Contact = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactForm>();
+  const [isSending, setIsSending] = useState(false);
+const [isSuccess, setIsSuccess] = useState(false);
+
 
   const onSubmit = (data: ContactForm) => {
-    console.log(data);
-    toast.success("Message sent successfully! I'll get back to you soon.");
-    reset();
+    const templateParams = {
+      name: data.name,
+      email: data.email,
+      title: data.subject,
+      message: data.message,
+    };
+
+    emailjs
+      .send(
+        "service_40flcmn",      // SERVICE ID
+        "template_ssv10fl",     // TEMPLATE ID
+        templateParams,
+        "ue2h84btGm7Q86WHs"     // PUBLIC KEY
+      )
+      .then(
+        (response) => {
+          toast.success("Message sent successfully! I'll get back to you soon.");
+          reset();
+        },
+        (error) => {
+          console.error("Email send failed:", error);
+          toast.error("Failed to send message. Please try again later.");
+        }
+      );
   };
+
 
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      value: "hello@example.com",
+      value: "kumarragav569@gmail.com",
       href: "mailto:hello@example.com",
     },
     {
@@ -39,7 +70,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Tamil Nadu, India",
       href: "#",
     },
   ];
@@ -74,10 +105,10 @@ const Contact = () => {
                 whileHover={{ x: 5 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="p-6 border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 bg-primary/10 rounded-lg glow-box-cyan">
-                      <info.icon className="text-primary" size={24} />
+                <Card className="p-6 mb-6 border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-300">
+                  <div className="flex items-center gap-6">
+                    <div className="p-4 bg-primary/10 rounded-lg glow-box-cyan">
+                      <info.icon className="text-primary" size={26} />
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground">{info.title}</p>
@@ -88,28 +119,73 @@ const Contact = () => {
               </motion.a>
             ))}
 
+
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
               className="pt-8"
             >
-              <Card className="p-6 border-border/50 bg-card/50 backdrop-blur-sm">
-                <h3 className="text-xl font-semibold mb-4">Let's Connect</h3>
+              <Card className="p-2 border-border/50 bg-card/50 backdrop-blur-sm">
+                <h3 className="text-xl font-semibold mb-5">Let's Connect</h3>
                 <p className="text-sm text-muted-foreground mb-4">
                   Available for freelance projects, full-time opportunities, and collaborations.
                 </p>
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" className="border-primary/50">
-                    LinkedIn
-                  </Button>
-                  <Button variant="outline" size="sm" className="border-primary/50">
-                    GitHub
-                  </Button>
-                  <Button variant="outline" size="sm" className="border-primary/50">
-                    Twitter
-                  </Button>
+                <div className="flex flex-wrap gap-3">
+
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/in/sriragavkumar/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" size="sm" className="flex items-center gap-2 border-primary/50">
+                      <Linkedin className="w-4 h-4" />
+                      LinkedIn
+                    </Button>
+                  </a>
+
+                  {/* GitHub */}
+                  <a
+                    href="https://github.com/sriragavkumar624"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" size="sm" className="flex items-center gap-2 border-primary/50">
+                      <Github className="w-4 h-4" />
+                      GitHub
+                    </Button>
+                  </a>
+
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/ragav__uzumaki/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" size="sm" className="flex items-center gap-2 border-primary/50">
+                      <Instagram className="w-4 h-4" />
+                      Instagram
+                    </Button>
+                  </a>
+
+                  {/* Facebook */}
+                  <a
+                    href="https://facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="outline" size="sm" className="flex items-center gap-2 border-primary/50">
+                      <Facebook className="w-4 h-4" />
+                      Facebook
+                    </Button>
+                  </a>
+
                 </div>
+
+
+
               </Card>
             </motion.div>
           </motion.div>
@@ -130,9 +206,8 @@ const Contact = () => {
                     <Input
                       {...register("name", { required: "Name is required" })}
                       placeholder="John Doe"
-                      className={`bg-background/50 border-border/50 focus:border-primary ${
-                        errors.name ? "border-destructive" : ""
-                      }`}
+                      className={`bg-background/50 border-border/50 focus:border-primary ${errors.name ? "border-destructive" : ""
+                        }`}
                     />
                     {errors.name && (
                       <p className="text-xs text-destructive">{errors.name.message}</p>
@@ -153,9 +228,8 @@ const Contact = () => {
                       })}
                       type="email"
                       placeholder="john@example.com"
-                      className={`bg-background/50 border-border/50 focus:border-primary ${
-                        errors.email ? "border-destructive" : ""
-                      }`}
+                      className={`bg-background/50 border-border/50 focus:border-primary ${errors.email ? "border-destructive" : ""
+                        }`}
                     />
                     {errors.email && (
                       <p className="text-xs text-destructive">{errors.email.message}</p>
@@ -170,9 +244,8 @@ const Contact = () => {
                   <Input
                     {...register("subject", { required: "Subject is required" })}
                     placeholder="Project Inquiry"
-                    className={`bg-background/50 border-border/50 focus:border-primary ${
-                      errors.subject ? "border-destructive" : ""
-                    }`}
+                    className={`bg-background/50 border-border/50 focus:border-primary ${errors.subject ? "border-destructive" : ""
+                      }`}
                   />
                   {errors.subject && (
                     <p className="text-xs text-destructive">{errors.subject.message}</p>
@@ -187,9 +260,8 @@ const Contact = () => {
                     {...register("message", { required: "Message is required" })}
                     placeholder="Tell me about your project..."
                     rows={6}
-                    className={`bg-background/50 border-border/50 focus:border-primary resize-none ${
-                      errors.message ? "border-destructive" : ""
-                    }`}
+                    className={`bg-background/50 border-border/50 focus:border-primary resize-none ${errors.message ? "border-destructive" : ""
+                      }`}
                   />
                   {errors.message && (
                     <p className="text-xs text-destructive">{errors.message.message}</p>
@@ -200,12 +272,42 @@ const Contact = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full glow-box-cyan bg-primary hover:bg-primary/80 text-primary-foreground font-semibold"
+                    disabled={isSending}
+                    className={`w-full font-semibold text-primary-foreground transition-all duration-300
+      ${isSuccess
+                        ? "bg-green-600 hover:bg-green-700 success-glow success-pulse"
+                        : "glow-box-cyan bg-primary hover:bg-primary/80"
+                      }
+    `}
                   >
-                    Send Message
-                    <Send className="ml-2" size={18} />
+                    {isSending ? (
+                      <motion.div
+                        className="flex items-center justify-center gap-2"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                      >
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Sending...
+                      </motion.div>
+                    ) : isSuccess ? (
+                      <motion.div
+                        className="flex items-center justify-center gap-2"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200 }}
+                      >
+                        <span className="text-white font-bold text-lg">✔</span>
+                        Message Sent
+                      </motion.div>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2" size={18} />
+                      </>
+                    )}
                   </Button>
                 </motion.div>
+
               </form>
             </Card>
           </motion.div>
